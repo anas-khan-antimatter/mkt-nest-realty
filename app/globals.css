@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: var(--background, #faf8f5);
+  --color-foreground: var(--foreground, #292524);
+  --color-brand: var(--brand, #1a3c34);
+  --color-brand-light: var(--brand-light, #2d6a5c);
+  --color-accent: var(--accent, #c8a87c);
+  --color-accent-light: var(--accent-light, #e8d5b7);
+  --color-warm: var(--warm, #f5f0ea);
+  --color-stone-50: #faf8f5;
+  --color-stone-100: #f0ece5;
+  --color-stone-200: #e0d8cc;
+  --color-stone-400: #a09080;
+  --color-stone-500: #807060;
+  --color-stone-600: #605040;
+  --color-stone-900: #1a1815;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-playfair), Georgia, serif;
+}
+
 :root {
   --background: #faf8f5;
   --foreground: #292524;
@@ -10,24 +29,20 @@
   --warm: #f5f0ea;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-brand: var(--brand);
-  --color-brand-light: var(--brand-light);
-  --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
-  --color-warm: var(--warm);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-playfair), Georgia, serif;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* ── Utilities ── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

@@ -9,6 +9,7 @@ const inter = Inter({
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -29,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-warm text-foreground">
+      <body className="min-h-full flex flex-col bg-[--warm] text-[--foreground]">
         {children}
       </body>
     </html>
