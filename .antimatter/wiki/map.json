@@ -1,0 +1,23 @@
+{
+  "root": "/tmp/am-ws/c-1790732959652-kweyh",
+  "name": "c-1790732959652-kweyh",
+  "generatedAt": "2026-09-30T15:54:45.430Z",
+  "fileCount": 1,
+  "dirCount": 1,
+  "languages": {
+    "Markdown": 1
+  },
+  "keyFiles": [
+    "README.md"
+  ],
+  "directories": [
+    {
+      "dir": "(root)",
+      "fileCount": 1,
+      "files": [
+        "README.md"
+      ],
+      "symbols": []
+    }
+  ]
+}
