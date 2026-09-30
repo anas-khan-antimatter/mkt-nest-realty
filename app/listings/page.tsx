@@ -1,76 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { LISTINGS_DATA, formatPriceFull, formatPrice } from "@/lib/data";
+import { LISTINGS_DATA, formatPrice } from "@/lib/data";
 
 type SortKey = "price-asc" | "price-desc" | "beds" | "sqft" | "newest";
 
-function filterListings(opts: {
-  minPrice?: number;
-  maxPrice?: number;
-  beds?: number;
-  baths?: number;
-  sort: SortKey;
-  q: string;
-}) {
-  let list = [...LISTINGS_DATA];
-
+function filterListings(
+  list: typeof LISTINGS_DATA,
+  opts: { minPrice?: number; maxPrice?: number; beds?: number; baths?: number; sort: SortKey; q: string },
+) {
+  let result = [...list];
   if (opts.q) {
     const q = opts.q.toLowerCase();
-    list = list.filter(
-      (l) =>
-        l.title.toLowerCase().includes(q) ||
-        l.location.toLowerCase().includes(q) ||
-        l.description.toLowerCase().includes(q),
+    result = result.filter(
+      (l) => l.title.toLowerCase().includes(q) || l.location.toLowerCase().includes(q) || l.description.toLowerCase().includes(q),
     );
   }
-  if (opts.minPrice) list = list.filter((l) => l.price >= opts.minPrice!);
-  if (opts.maxPrice) list = list.filter((l) => l.price <= opts.maxPrice!);
-  if (opts.beds) list = list.filter((l) => l.beds >= opts.beds!);
-  if (opts.baths) list = list.filter((l) => l.baths >= opts.baths!);
-
+  if (opts.minPrice) result = result.filter((l) => l.price >= opts.minPrice!);
+  if (opts.maxPrice) result = result.filter((l) => l.price <= opts.maxPrice!);
+  if (opts.beds) result = result.filter((l) => l.beds >= opts.beds!);
+  if (opts.baths) result = result.filter((l) => l.baths >= opts.baths!);
   switch (opts.sort) {
-    case "price-asc":
-      list.sort((a, b) => a.price - b.price);
-      break;
-    case "price-desc":
-      list.sort((a, b) => b.price - a.price);
-      break;
-    case "beds":
-      list.sort((a, b) => b.beds - a.beds);
-      break;
-    case "sqft":
-      list.sort((a, b) => b.sqft - a.sqft);
-      break;
-    case "newest":
-      list.sort((a, b) => b.yearBuilt - a.yearBuilt);
-      break;
+    case "price-asc": result.sort((a, b) => a.price - b.price); break;
+    case "price-desc": result.sort((a, b) => b.price - a.price); break;
+    case "beds": result.sort((a, b) => b.beds - a.beds); break;
+    case "sqft": result.sort((a, b) => b.sqft - a.sqft); break;
+    case "newest": result.sort((a, b) => b.yearBuilt - a.yearBuilt); break;
   }
-  return list;
+  return result;
 }
 
-function getParams() {
-  const p = new URLSearchParams(window.location.search);
-  return {
-    minPrice: p.get("minPrice") ? Number(p.get("minPrice")) : undefined,
-    maxPrice: p.get("maxPrice") ? Number(p.get("maxPrice")) : undefined,
-    beds: p.get("beds") ? Number(p.get("beds")) : undefined,
-    baths: p.get("baths") ? Number(p.get("baths")) : undefined,
-    sort: (p.get("sort") as SortKey) ?? "price-asc",
-    q: p.get("q") ?? "",
+export default function ListingsPage({
+  searchParams,
+}: {
+  searchParams: { minPrice?: string; maxPrice?: string; beds?: string; baths?: string; sort?: string; q?: string };
+}) {
+  const opts = {
+    minPrice: searchParams.minPrice ? Number(searchParams.minPrice) : undefined,
+    maxPrice: searchParams.maxPrice ? Number(searchParams.maxPrice) : undefined,
+    beds: searchParams.beds ? Number(searchParams.beds) : undefined,
+    baths: searchParams.baths ? Number(searchParams.baths) : undefined,
+    sort: (searchParams.sort as SortKey) ?? "price-asc",
+    q: searchParams.q ?? "",
   };
-}
+  const filtered = filterListings(LISTINGS_DATA, opts);
 
-function setParam(key: string, value: string) {
-  const params = new URLSearchParams(window.location.search);
-  if (value) params.set(key, value);
-  else params.delete(key);
-  window.location.search = params.toString();
-}
-
-export default function ListingsPage() {
-  const opts = getParams();
-  const filtered = filterListings(opts);
+  const locations = [...new Set(filtered.map((l) => l.location))];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
@@ -78,20 +53,14 @@ export default function ListingsPage() {
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[--brand-light]">Explore</span>
         <h1 className="mt-3 font-heading text-4xl font-bold text-[--brand] sm:text-5xl">All Listings</h1>
         <p className="mx-auto mt-4 max-w-xl text-[--stone-600]">
-          {filtered.length} home{filtered.length !== 1 ? "s" : ""} across {new Set(filtered.map((l) => l.location)).size} neighborhoods.
+          {filtered.length} home{filtered.length !== 1 ? "s" : ""} across {locations.length} neighborhood{locations.length !== 1 ? "s" : ""}.
         </p>
       </div>
 
-      {/* Filters */}
-      <div className="mb-10 flex flex-wrap items-end gap-3">
-        <input
-          type="search"
-          placeholder="Search listings…"
-          defaultValue={opts.q}
-          className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm"
-          onChange={(e) => setParam("q", e.target.value)}
-        />
-        <select className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" onChange={(e) => setParam("minPrice", e.target.value)}>
+      {/* Filter form — GET submission preserves URL params */}
+      <form method="GET" className="mb-10 flex flex-wrap items-end gap-3">
+        <input type="search" name="q" placeholder="Search listings…" defaultValue={opts.q} className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" />
+        <select name="minPrice" className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" defaultValue={searchParams.minPrice ?? ""}>
           <option value="">Min Price</option>
           <option value="500000">$500K</option>
           <option value="1000000">$1M</option>
@@ -99,7 +68,7 @@ export default function ListingsPage() {
           <option value="3000000">$3M</option>
           <option value="5000000">$5M+</option>
         </select>
-        <select className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" onChange={(e) => setParam("maxPrice", e.target.value)}>
+        <select name="maxPrice" className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" defaultValue={searchParams.maxPrice ?? ""}>
           <option value="">Max Price</option>
           <option value="1000000">$1M</option>
           <option value="2000000">$2M</option>
@@ -107,26 +76,27 @@ export default function ListingsPage() {
           <option value="5000000">$5M</option>
           <option value="10000000">$10M+</option>
         </select>
-        <select className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" onChange={(e) => setParam("beds", e.target.value)}>
+        <select name="beds" className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" defaultValue={searchParams.beds ?? ""}>
           <option value="">Beds</option>
           {[1, 2, 3, 4, 5].map((b) => (
             <option key={b} value={b}>{b}+</option>
           ))}
         </select>
-        <select className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" onChange={(e) => setParam("baths", e.target.value)}>
+        <select name="baths" className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" defaultValue={searchParams.baths ?? ""}>
           <option value="">Baths</option>
           {[1, 2, 3, 4].map((b) => (
             <option key={b} value={b}>{b}+</option>
           ))}
         </select>
-        <select className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" onChange={(e) => setParam("sort", e.target.value)}>
+        <select name="sort" className="h-10 rounded-full border border-[--stone-200] bg-white px-4 text-sm" defaultValue={opts.sort}>
           <option value="price-asc">Price: Low</option>
           <option value="price-desc">Price: High</option>
           <option value="beds">Bedrooms</option>
           <option value="sqft">Square Feet</option>
           <option value="newest">Newest</option>
         </select>
-      </div>
+        <button type="submit" className="h-10 rounded-full bg-[--accent] px-6 text-sm font-bold text-[--foreground]">Filter</button>
+      </form>
 
       {filtered.length === 0 ? (
         <div className="py-20 text-center">
