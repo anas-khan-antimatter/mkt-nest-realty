@@ -1,10 +1,10 @@
-# Workspace Map — c-1790732959652-kweyh
-_Generated 2026-10-01 · 43 files · 16 directories_  
+# Workspace Map — c-1790870816448-8ogxk
+_Generated 2026-10-01 · 45 files · 18 directories_  
 _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Map Workspace". Do not hand-edit._
 
 ## Languages
+- TypeScript: 12
 - Markdown: 11
-- TypeScript: 10
 - JSON: 9
 - JavaScript: 4
 - YAML: 1
@@ -41,6 +41,10 @@ _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Ma
 - symbols: metadata (const)
 - files: favicon.ico, globals.css, layout.tsx, page.tsx
 
+### `app/api/inquiry` — 1 file
+- symbols: POST (fn)
+- files: route.ts
+
 ### `app/api/listing-copy` — 1 file
 - symbols: POST (fn)
 - files: route.ts
@@ -52,6 +56,9 @@ _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Ma
 - files: page.tsx
 
 ### `app/neighborhoods` — 1 file
+- files: page.tsx
+
+### `app/rate` — 1 file
 - files: page.tsx
 
 ### `app/saved` — 1 file
