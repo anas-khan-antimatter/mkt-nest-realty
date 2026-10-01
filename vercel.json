@@ -1,4 +1,7 @@
 {
   "name": "mkt-nest-realty",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "vercel": {
+    "deploymentProtection": false
+  }
 }
