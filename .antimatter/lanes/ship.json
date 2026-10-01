@@ -2,25 +2,31 @@
   "schema": 1,
   "runsOn": "ubuntu-latest",
   "setup": [
-    "npm ci || npm install"
+    "npm ci"
   ],
   "build": [
-    "npm run build --if-present"
+    "npm run build"
   ],
-  "services": [
-    {
-      "cmd": "npm start",
-      "background": true
-    }
-  ],
-  "run": [],
   "probes": [
     {
+      "kind": "browser",
+      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/listings"
+    },
+    {
+      "kind": "browser",
+      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/neighborhoods"
+    },
+    {
+      "kind": "browser",
+      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/saved"
+    },
+    {
+      "kind": "browser",
+      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/schedule-tour"
+    },
+    {
       "kind": "http",
-      "url": "http://localhost:3000/health",
-      "withinSec": 90
+      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/api/listing-copy"
     }
-  ],
-  "secretEnv": [],
-  "timeoutMinutes": 25
+  ]
 }
