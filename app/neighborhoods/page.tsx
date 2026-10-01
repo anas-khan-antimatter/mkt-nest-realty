@@ -62,6 +62,8 @@ export default function NeighborhoodsPage() {
           <nav className="items-center gap-6 flex">
             <Link href="/listings" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Listings</Link>
             <Link href="/neighborhoods" className="text-sm font-medium uppercase tracking-widest text-sage">Neighborhoods</Link>
+            <Link href="/schedule-tour" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Tour</Link>
+            <Link href="/saved" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Saved</Link>
           </nav>
         </div>
       </header>
