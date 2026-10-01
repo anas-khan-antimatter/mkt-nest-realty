@@ -125,7 +125,7 @@ export default function NeighborhoodsPage() {
                         {isExpanded ? "▲ Show Less" : "▼ Guide Details"}
                       </button>
                       {isExpanded && (
-                        <div className="mt-3 space-y-3 text-sm text-stone-600 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="mt-3 space-y-3 text-sm text-stone-600">
                           <p className="italic leading-relaxed">&ldquo;{guide.vibe}&rdquo;</p>
                           <div>
                             <span className="text-xs font-bold uppercase tracking-wider text-stone-500 block mb-1">Average Price</span>
