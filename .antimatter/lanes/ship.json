@@ -10,23 +10,15 @@
   "probes": [
     {
       "kind": "browser",
-      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/listings"
+      "url": "/listings"
     },
     {
       "kind": "browser",
-      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/neighborhoods"
-    },
-    {
-      "kind": "browser",
-      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/saved"
-    },
-    {
-      "kind": "browser",
-      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/schedule-tour"
+      "url": "/rate"
     },
     {
       "kind": "http",
-      "url": "https://mkt-nest-realty-anas-khans-projects-f97c0702.vercel.app/api/listing-copy"
+      "url": "/api/inquiry"
     }
   ]
 }
