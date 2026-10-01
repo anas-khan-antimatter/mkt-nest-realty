@@ -1,15 +1,16 @@
 {
   "root": "/tmp/am-ws/c-1790732959652-kweyh",
   "name": "c-1790732959652-kweyh",
-  "generatedAt": "2026-09-30T17:39:59.157Z",
-  "fileCount": 29,
-  "dirCount": 5,
+  "generatedAt": "2026-10-01T14:43:13.823Z",
+  "fileCount": 43,
+  "dirCount": 16,
   "languages": {
+    "JSON": 9,
     "Markdown": 11,
-    "JSON": 5,
-    "CSS": 1,
-    "TypeScript": 3,
-    "JavaScript": 2
+    "JavaScript": 4,
+    "YAML": 1,
+    "TypeScript": 10,
+    "CSS": 1
   },
   "keyFiles": [
     "package.json",
@@ -17,6 +18,23 @@
     "tsconfig.json"
   ],
   "directories": [
+    {
+      "dir": ".antimatter",
+      "fileCount": 2,
+      "files": [
+        "graph.json",
+        "ship-probes.json"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": ".antimatter/lanes",
+      "fileCount": 1,
+      "files": [
+        "ship.json"
+      ],
+      "symbols": []
+    },
     {
       "dir": ".antimatter/wiki",
       "fileCount": 6,
@@ -44,8 +62,25 @@
       "symbols": []
     },
     {
+      "dir": ".github/antimatter",
+      "fileCount": 2,
+      "files": [
+        "lane-runner.mjs",
+        "store-release.mjs"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": ".github/workflows",
+      "fileCount": 1,
+      "files": [
+        "antimatter-lane.yml"
+      ],
+      "symbols": []
+    },
+    {
       "dir": "(root)",
-      "fileCount": 8,
+      "fileCount": 9,
       "files": [
         ".gitignore",
         "eslint.config.mjs",
@@ -54,7 +89,8 @@
         "package.json",
         "postcss.config.mjs",
         "README.md",
-        "tsconfig.json"
+        "tsconfig.json",
+        "vercel.json"
       ],
       "symbols": []
     },
@@ -70,6 +106,96 @@
       "symbols": [
         {
           "name": "metadata",
+          "kind": "const"
+        }
+      ]
+    },
+    {
+      "dir": "app/api/listing-copy",
+      "fileCount": 1,
+      "files": [
+        "route.ts"
+      ],
+      "symbols": [
+        {
+          "name": "POST",
+          "kind": "fn"
+        }
+      ]
+    },
+    {
+      "dir": "app/listings",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "app/listings/[id]",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "app/neighborhoods",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "app/saved",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "app/schedule-tour",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "lib",
+      "fileCount": 1,
+      "files": [
+        "data.ts"
+      ],
+      "symbols": [
+        {
+          "name": "formatPrice",
+          "kind": "fn"
+        },
+        {
+          "name": "formatPriceFull",
+          "kind": "fn"
+        },
+        {
+          "name": "getListing",
+          "kind": "fn"
+        },
+        {
+          "name": "getListings",
+          "kind": "fn"
+        },
+        {
+          "name": "Listing",
+          "kind": "interface"
+        },
+        {
+          "name": "neighborhoods",
+          "kind": "const"
+        },
+        {
+          "name": "listings",
           "kind": "const"
         }
       ]
