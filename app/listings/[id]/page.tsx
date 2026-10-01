@@ -8,7 +8,8 @@ import { getListing, formatPriceFull, neighborhoods } from "@/lib/data";
 export default function ListingDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const listing = getListing(params.id || "");
+  const id = typeof params.id === "string" ? params.id : "";
+  const listing = getListing(id);
 
   // Mortgage calc state
   const [downPercent, setDownPercent] = useState(20);
@@ -42,10 +43,11 @@ export default function ListingDetailPage() {
   const nhood = neighborhoods.find((n) => n.slug === listing.neighborhood);
 
   // Saved state
+  const listingId = listing.id;
   const [saved, setSaved] = useState(() => {
     try {
       const raw = localStorage.getItem("nest-saved");
-      if (raw) return JSON.parse(raw).includes(listing.id);
+      if (raw) return JSON.parse(raw).includes(listingId);
     } catch {}
     return false;
   });
@@ -54,17 +56,17 @@ export default function ListingDetailPage() {
     try {
       const raw = localStorage.getItem("nest-saved") || "[]";
       const arr = JSON.parse(raw);
-      if (arr.includes(listing.id)) {
-        const next = arr.filter((x: string) => x !== listing.id);
+      if (arr.includes(listingId)) {
+        const next = arr.filter((x: string) => x !== listingId);
         localStorage.setItem("nest-saved", JSON.stringify(next));
         setSaved(false);
       } else {
-        arr.push(listing.id);
+        arr.push(listingId);
         localStorage.setItem("nest-saved", JSON.stringify(arr));
         setSaved(true);
       }
     } catch {
-      localStorage.setItem("nest-saved", JSON.stringify([listing.id]));
+      localStorage.setItem("nest-saved", JSON.stringify([listingId]));
       setSaved(true);
     }
   }
