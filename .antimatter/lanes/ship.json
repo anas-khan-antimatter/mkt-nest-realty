@@ -1,0 +1,48 @@
+{
+  "name": "mkt-nest-realty",
+  "version": "0.1.0",
+  "build": {
+    "command": "npm run build",
+    "output": ".next"
+  },
+  "probes": [
+    {
+      "type": "http",
+      "path": "/",
+      "description": "Home page",
+      "expectedStatus": 200
+    },
+    {
+      "type": "http",
+      "path": "/listings",
+      "description": "Listings grid page with filters and sort",
+      "expectedStatus": 200
+    },
+    {
+      "type": "http",
+      "path": "/neighborhoods",
+      "description": "Neighborhood guides page",
+      "expectedStatus": 200
+    },
+    {
+      "type": "http",
+      "path": "/saved",
+      "description": "Saved homes (localStorage) page",
+      "expectedStatus": 200
+    },
+    {
+      "type": "http",
+      "path": "/schedule-tour",
+      "description": "Open-house scheduler form page",
+      "expectedStatus": 200
+    },
+    {
+      "type": "http",
+      "path": "/api/listing-copy",
+      "method": "POST",
+      "body": "{\"listingId\":\"nest-001\",\"tone\":\"warm\"}",
+      "description": "Listing copy rewriter API with AI fallback",
+      "expectedStatus": 200
+    }
+  ]
+}
