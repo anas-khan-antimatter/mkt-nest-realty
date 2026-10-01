@@ -2,25 +2,19 @@
   "schema": 1,
   "runsOn": "ubuntu-latest",
   "setup": [
-    "npm ci || npm install"
+    "npm ci"
   ],
   "build": [
-    "npm run build --if-present"
+    "npm run build"
   ],
-  "services": [
-    {
-      "cmd": "npm start",
-      "background": true
-    }
-  ],
-  "run": [],
   "probes": [
     {
+      "kind": "browser",
+      "url": "/rate"
+    },
+    {
       "kind": "http",
-      "url": "http://localhost:3000/health",
-      "withinSec": 90
+      "url": "/api/inquiry"
     }
-  ],
-  "secretEnv": [],
-  "timeoutMinutes": 25
+  ]
 }
