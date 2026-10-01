@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description:
     "Discover your dream home with Nest Realty. Boutique residential real estate brokerage serving curated neighborhoods with expertise and care.",
   icons: { icon: "/favicon.ico" },
+  metadataBase: new URL("https://mkt-nest-realty.vercel.app"),
 };
 
 export default function RootLayout({
