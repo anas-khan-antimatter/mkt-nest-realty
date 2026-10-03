@@ -68,28 +68,34 @@ export default function Home() {
           </Link>
           <nav className="hidden items-center gap-8 md:flex">
             <Link
-              href="#listings"
+              href="/listings"
               className="text-sm font-medium uppercase tracking-widest text-stone-600 transition-colors hover:text-brand"
             >
               Listings
             </Link>
             <Link
-              href="#neighborhoods"
+              href="/neighborhoods"
               className="text-sm font-medium uppercase tracking-widest text-stone-600 transition-colors hover:text-brand"
             >
               Neighborhoods
             </Link>
             <Link
-              href="#about"
+              href="/agents"
               className="text-sm font-medium uppercase tracking-widest text-stone-600 transition-colors hover:text-brand"
             >
-              About
+              Agents
             </Link>
             <Link
-              href="#contact"
+              href="/rate"
               className="text-sm font-medium uppercase tracking-widest text-stone-600 transition-colors hover:text-brand"
             >
-              Contact
+              Rate
+            </Link>
+            <Link
+              href="/schedule-tour"
+              className="text-sm font-medium uppercase tracking-widest text-stone-600 transition-colors hover:text-brand"
+            >
+              Tour
             </Link>
             <Link
               href="#contact"

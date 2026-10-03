@@ -79,6 +79,7 @@ export default function ScheduleTourPage() {
             <Link href="/" className="font-heading text-2xl tracking-wide text-sage">Nest Realty</Link>
             <nav className="items-center gap-6 flex">
               <Link href="/listings" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Listings</Link>
+              <Link href="/agents" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Agents</Link>
               <Link href="/schedule-tour" className="text-sm font-medium uppercase tracking-widest text-sage">Schedule Tour</Link>
             </nav>
           </div>
@@ -126,6 +127,7 @@ export default function ScheduleTourPage() {
           <nav className="items-center gap-6 flex">
             <Link href="/listings" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Listings</Link>
             <Link href="/neighborhoods" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Neighborhoods</Link>
+            <Link href="/agents" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Agents</Link>
             <Link href="/schedule-tour" className="text-sm font-medium uppercase tracking-widest text-sage">Schedule Tour</Link>
             <Link href="/saved" className="text-sm font-medium uppercase tracking-widest text-stone-600 hover:text-sage">Saved</Link>
           </nav>
